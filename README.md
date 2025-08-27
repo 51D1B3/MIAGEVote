@@ -26,7 +26,7 @@ Aucune installation de dépendances n'est requise : tout fonctionne en local ave
 
 ## Auteur
 
-Projet réalisé dans le cadre d'un exercice MIAGE. Dévélopper par monsieur Mahamadou Sidibé étudiant de la MIAGE à l'université de Labé.
+Projet réalisé dans le cadre d'un exercice MIAGE. Développé par Mahamadou Sidibé, étudiant en MIAGE à l'université de Labé.
 
 ## Licence
 

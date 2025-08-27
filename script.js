@@ -33,11 +33,18 @@ function renderCandidates() {
   });
 }
 
-// Voter
+// Voter avec confirmation
 function vote(id) {
-  votes[id]++;
-  saveVotes();
-  alert("✅ Vote pour " + candidates.find(c => c.id === id).name + " a été enregistré avec succès !");
+  const candidate = candidates.find(c => c.id === id);
+  let confirmation = confirm(`Voulez-vous vraiment voter pour ${candidate.name} ?`);
+
+  if (confirmation) {
+    votes[id]++;
+    saveVotes();
+    alert("✅ Vote pour " + candidate.name + " a été enregistré avec succès !");
+  } else {
+    alert("❌ Vote annulé !");
+  }
 }
 
 // Réinitialiser les votes
