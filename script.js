@@ -1,7 +1,7 @@
 // Liste des candidats
 const candidates = [
   { id: 1, name: "THOMAS LAMAH", photo: "./images/homme-calme.jpg" },
-  { id: 2, name: "MAHAMADOU SIDIBE", photo: "./images/11503652.jpg" },
+  { id: 2, name: "MAHAMADOU SIDIBE", photo: "./images/Mon_image.jpg" },
   { id: 3, name: "JOSEPH SAGNO", photo: "./images/portrait-de-succes-entrepreneur.jpg" },
   { id: 4, name: "BOUBACAR DIALLO", photo: "./images/je-sais-exactement-ce-que-je-veux.jpg" }
 ];
