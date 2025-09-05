@@ -174,3 +174,154 @@ button:hover {
   padding-top: 8px;
   text-align: center;
 }
+
+/* Header contenu principal */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Espace logo <-> bouton reset */
+  padding: 15px 30px;
+  background: var(--white);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+header .logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: var(--blue);
+}
+
+header img {
+  height: 60px;
+}
+
+/* Bouton de réinitialisation dans le header */
+.reset-btn {
+  background: #ff4444;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  transition: background 0.3s;
+}
+
+.reset-btn:hover {
+  background: #cc0000;
+}
+
+
+/* Upload d'image stylisé */
+.file-upload {
+  margin: 10px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.file-upload input[type="file"] {
+  display: none;
+}
+
+.file-upload label {
+  background: var(--skyblue);
+  color: white;
+  padding: 8px 15px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background 0.3s;
+  font-size: 0.9rem;
+}
+
+.file-upload label:hover {
+  background: var(--blue);
+}
+
+/* Bouton ajouter candidat */
+.add-btn {
+  margin: 20px auto;
+  display: block;
+  background: #28a745;
+  font-weight: bold;
+  font-size: 1rem;
+  border-radius: 25px;
+}
+
+.add-btn:hover {
+  background: #218838;
+}
+
+/* Style pour le texte défilant horizontalement*/
+.marquee-container {
+  width: 100%;           /* occupe toute la largeur */
+  overflow: hidden;      /* cache le texte qui dépasse */
+  background-color: #0077cc; /* fond bleu pharmacie */
+  color: white;
+  border-radius: 5px;
+  padding: 5px 0;
+  box-sizing: border-box;
+}
+
+.marquee-text {
+  display: inline-block;
+  white-space: nowrap;   /* texte sur une seule ligne */
+  padding-left: 100%;    /* démarre hors écran à droite */
+  animation: marquee 15s linear infinite; /* durée et répétition */
+  font-weight: bold;
+  font-size: 18px;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-100%); } /* défile vers la gauche */
+}
+
+/* Le style du bouton Aide */
+.help-box {
+  display: none;               /* caché par défaut */
+  position: fixed;
+  top: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  max-width: 600px;
+  background-color: hsl(208, 100%, 92%);
+  color: #000;
+  border: 2px solid #0077cc;
+  border-radius: 10px;
+  padding: 20px;
+  font-size: 20px;             /* texte plus grand */
+  line-height: 1.6;
+  z-index: 1000;
+  box-shadow: 0 0 15px rgba(0,0,0,0.3);
+}
+
+.help-box h3 {
+  font-size: 24px;             /* titre plus grand */
+  margin-bottom: 10px;
+}
+
+.help-box button {
+  margin-top: 10px;
+  padding: 8px 16px;
+  border: none;
+  background-color: #0077cc;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 18px;
+  display: block;           /* transforme le bouton en bloc */
+  margin: 20px auto 0 auto;
+}
+
+.help-box button:hover {
+  background-color: #005fa3;
+}
+.help-btn{
+  font-size: 17px;
+}

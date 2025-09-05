@@ -5,29 +5,50 @@
   <title>Vote pour les candidats</title>
   <script src="script.js" defer></script>
   <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/png" href="favicon.png">
 </head>
 <body>
-  <!-- Header avec logo -->
+  <!-- Header avec logo et bouton reset -->
   <header>
     <div class="logo">
       <img src="./images/LogoProjet-remove.png" alt="Logo">
       <span>51D1B3</span>
     </div>
+    <button class="reset-btn" onclick="resetCandidates()">🔄 Réinitialiser</button>
+    <button onclick="showHelp()" class="help-btn">❓Aide</button>
   </header>
+    <!-- Zone d'aide -->
+<div id="help-box" class="help-box">
+  <h3>Comment utiliser ce site de votes ?</h3>
+  <p>
+    1️⃣ <strong>Modifier les candidats :</strong> cliquez sur le nom ou l'image pour les changer selon les informations du candidat.<br>
+    2️⃣ <strong>Ajouter un candidat :</strong> cliquez sur “Ajouter un candidat” pour ajouter un nouveau candidat.<br>
+    3️⃣ <strong>Voter :</strong> Cliquez sur “Voter” et confirmez.<br>
+    4️⃣ <strong>Réinitialiser :</strong> “Réinitialiser les candidats” remet les profils par défaut.<br>
+    5️⃣ <strong>Voir résultats :</strong> Cliquez sur “Voir résultats” pour total et pourcentage.
+  </p>
+  <button onclick="hideHelp()">Fermer</button>
+</div>
 
   <main>
-    <h1>Veuillez voter pour votre candidat !</h1>
+  <h1>Veuillez voter pour votre candidat !</h1>
 
-    <div class="candidates" id="candidates"></div>
+  <div class="candidates" id="candidates"></div>
 
-    <button class="results-btn" onclick="showResults()">Voir les votes</button>
+  <!-- Bouton pour ajouter un nouveau candidat -->
+  <button class="add-btn" onclick="addCandidate()">➕ Ajouter un candidat</button>
 
-    <div class="results" id="results"></div>
-  </main>
+  <button class="results-btn" onclick="showResults()">Voir les votes</button>
+
+  <div class="results" id="results"></div>
+</main>
+
+  <div class="marquee-container">
+    <p class="marquee-text">Bienvenue sur mon application de votes.</p>
+  </div>
 
   <div class="signature-footer">
     <footer>Copyright © 24/08/2025 by 51D1B3</footer>
   </div>
 </body>
 </html>
-
