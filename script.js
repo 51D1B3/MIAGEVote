@@ -118,7 +118,6 @@ function showResults() {
   container.innerHTML = `
     <div style="display: flex; align-items: center; justify-content: space-between;">
       <h2>Résultats des votes</h2>
-      <button onclick="downloadPDF()" class="pdf-btn">📄 Télécharger</button>
       <button class="reset-btn" onclick="resetVotes()">🔄 Reset Votes</button>
     </div>
     <div class='candidates'></div>
@@ -266,90 +265,3 @@ function showHelp() {
 function hideHelp() {
   document.getElementById("help-box").style.display = "none";
 }
-
-// // Fonction pour télécharger le PDF des résultats
-// function downloadPDF() {
-//     if (candidates.length === 0) {
-//         alert("Aucun candidat à exporter !");
-//         return;
-//     }
-
-//     const sorted = [...candidates].sort((a, b) => votes[b.id] - votes[a.id]);
-//     const totalVotes = Object.values(votes).reduce((a, b) => a + b, 0);
-//     const nullVotes = votes.null || 0;
-    
-//     const now = new Date();
-//     const dateTime = now.toLocaleDateString("fr-FR") + " à " + now.toLocaleTimeString("fr-FR");
-//     const fileDateTime = now.toISOString().replace(/[:.]/g, '-').slice(0, 19);
-
-//     // Créer un élément temporaire visible
-//     const tempDiv = document.createElement('div');
-//     tempDiv.style.position = 'absolute';
-//     tempDiv.style.left = '-9999px';
-//     tempDiv.style.top = '0';
-//     tempDiv.style.width = '210mm';
-//     tempDiv.style.backgroundColor = 'white';
-//     tempDiv.style.padding = '20px';
-//     tempDiv.style.fontFamily = 'Arial, sans-serif';
-    
-//     let html = `
-//         <div style="text-align: center; margin-bottom: 30px;">
-//             <h1 style="color: #333; margin-bottom: 10px;">Résultats des Votes SidiVote</h1>
-//             <p style="color: #666; font-size: 14px;">Généré le : ${dateTime}</p>
-//         </div>
-//         <h2 style="color: #333; margin-bottom: 20px;">Classement des candidats</h2>
-//     `;
-
-//     sorted.forEach((c, index) => {
-//         const percentage = totalVotes > 0 ? ((votes[c.id] / totalVotes) * 100).toFixed(1) : 0;
-//         const isWinner = index === 0;
-        
-//         html += `
-//             <div style="padding: 15px; margin: 10px 0; border: 1px solid #ddd; border-radius: 8px; ${isWinner ? 'background: #d4f8d4; border: 2px solid #27ae60;' : 'background: white;'}">
-//                 <div style="font-size: 18px; font-weight: bold; ${isWinner ? 'color: #27ae60;' : 'color: #333;'}">
-//                     ${index + 1}${isWinner ? '. 🏆' : '.'} ${c.name}
-//                 </div>
-//                 <div style="font-size: 14px; margin-top: 5px; ${isWinner ? 'color: #27ae60; font-weight: bold;' : 'color: #666;'}">
-//                     ${votes[c.id]} votes (${percentage}%)
-//                 </div>
-//             </div>
-//         `;
-//     });
-
-//     const validVotes = totalVotes - nullVotes;
-//     const avgVotes = validVotes > 0 ? (validVotes / candidates.length).toFixed(1) : 0;
-//     const candidateVotes = candidates.map(c => votes[c.id]);
-//     const maxVotes = Math.max(...candidateVotes);
-//     const minVotes = Math.min(...candidateVotes);
-
-//     html += `
-//         <div style="margin-top: 30px; padding: 20px; background: #f5f5f5; border-radius: 8px;">
-//             <h3 style="margin-bottom: 15px; color: #333;">📊 Statistiques finales</h3>
-//             <div style="font-size: 14px; line-height: 1.8; color: #333;">
-//                 • Total des votes : <strong>${totalVotes}</strong><br>
-//                 • Votes valides : <strong>${validVotes}</strong><br>
-//                 • Bulletins nuls : <strong>${nullVotes}</strong><br>
-//                 • Nombre de candidats : <strong>${candidates.length}</strong><br>
-//                 • Moyenne de votes par candidat : <strong>${avgVotes}</strong><br>
-//                 • Votes maximum : <strong>${maxVotes}</strong><br>
-//                 • Votes minimum : <strong>${minVotes}</strong><br>
-//                 • Taux de participation gagnant : <strong>${totalVotes > 0 ? ((maxVotes / totalVotes) * 100).toFixed(1) : 0}%</strong>
-//             </div>
-//         </div>
-//     `;
-
-//     tempDiv.innerHTML = html;
-//     document.body.appendChild(tempDiv);
-
-//     const options = {
-//         margin: 15,
-//         filename: `votes_${fileDateTime}.pdf`,
-//         image: { type: 'jpeg', quality: 0.98 },
-//         html2canvas: { scale: 2 },
-//         jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-//     };
-
-//     html2pdf().set(options).from(tempDiv).save().then(() => {
-//         document.body.removeChild(tempDiv);
-//     });
-// }
