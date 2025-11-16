@@ -2,7 +2,6 @@
 const defaultCandidates = [
   { id: 1, name: "THOMAS LAMAH", photo: "./images/homme-calme.jpg" },
   { id: 2, name: "MAHAMADOU SIDIBE", photo: "./images/Mon_image.jpg" },
-  { id: 3, name: "JOSEPH SAGNO", photo: "./images/portrait-de-succes-entrepreneur.jpg" },
 ];
 
 // --- Charger les candidats depuis localStorage (si modifiés) ---
