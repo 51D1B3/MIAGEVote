@@ -265,3 +265,151 @@ function showHelp() {
 function hideHelp() {
   document.getElementById("help-box").style.display = "none";
 }
+
+// Fonction pour exporter les résultats en PDF
+function exportResultsToPDF() {
+  try {
+    const totalVotes = Object.values(votes).reduce((a, b) => a + b, 0);
+    
+    if (totalVotes === 0) {
+      alert("⚠️ Il n'y a pas encore de votes à exporter !");
+      return;
+    }
+
+    const sorted = [...candidates].sort((a, b) => votes[b.id] - votes[a.id]);
+    const nullVotes = votes.null || 0;
+    const now = new Date();
+
+    // Vérifier que jsPDF est disponible (UMD exposes window.jspdf.jsPDF)
+    let PDFConstructor = null;
+    if (window.jspdf && window.jspdf.jsPDF) {
+      PDFConstructor = window.jspdf.jsPDF;
+    } else if (typeof jsPDF !== 'undefined') {
+      PDFConstructor = jsPDF;
+    }
+    if (!PDFConstructor) {
+      alert("❌ La bibliothèque jsPDF n'est pas chargée. Veuillez rafraîchir la page.");
+      return;
+    }
+
+    // Créer le PDF directement avec le constructeur détecté
+    const pdf = new PDFConstructor({
+      orientation: 'portrait',
+      unit: 'mm',
+      format: 'a4'
+    });
+
+    let yPosition = 20;
+    const pageHeight = pdf.internal.pageSize.getHeight();
+    const pageWidth = pdf.internal.pageSize.getWidth();
+    const margin = 15;
+
+    // En-tête
+    pdf.setFontSize(18);
+    pdf.setTextColor(99, 102, 241); // couleur primaire
+  pdf.text('Résultats des Votes', pageWidth / 2, yPosition, { align: 'center' });
+
+    yPosition += 10;
+    pdf.setFontSize(12);
+    pdf.setTextColor(100, 100, 100);
+    pdf.text('Application SidiVote', pageWidth / 2, yPosition, { align: 'center' });
+
+    yPosition += 8;
+    pdf.setFontSize(10);
+    pdf.setTextColor(150, 150, 150);
+    pdf.text(`Rapport généré le ${now.toLocaleString('fr-FR')}`, pageWidth / 2, yPosition, { align: 'center' });
+
+    yPosition += 12;
+    pdf.setFontSize(12);
+    pdf.setTextColor(50, 50, 50);
+    pdf.text(`Total des votes : ${totalVotes}`, margin, yPosition);
+
+    yPosition += 15;
+
+    // Ajouter les candidats
+    sorted.forEach((c, index) => {
+      const count = votes[c.id];
+      const percentage = totalVotes > 0 ? ((count / totalVotes) * 100).toFixed(1) : 0;
+
+      // Vérifier si besoin de nouvelle page
+      if (yPosition > pageHeight - 30) {
+        pdf.addPage();
+        yPosition = 20;
+      }
+
+      // Numéro et nom
+      pdf.setFontSize(11);
+      pdf.setTextColor(50, 50, 50);
+      pdf.text(`${index + 1}. ${c.name}`, margin, yPosition);
+
+      // Votes et pourcentage
+      yPosition += 7;
+      pdf.setFontSize(10);
+      pdf.setTextColor(99, 102, 241);
+      pdf.text(`Votes: ${count} (${percentage}%)`, margin + 5, yPosition);
+
+      // Barre de progression
+      yPosition += 6;
+      pdf.setDrawColor(200, 200, 200);
+      pdf.rect(margin + 5, yPosition, pageWidth - 2 * margin - 10, 3);
+      
+      pdf.setDrawColor(99, 102, 241);
+      pdf.setFillColor(99, 102, 241);
+      const barWidth = ((pageWidth - 2 * margin - 10) * percentage) / 100;
+      pdf.rect(margin + 5, yPosition, barWidth, 3, 'F');
+
+      yPosition += 8;
+    });
+
+    // Bulletins nuls
+    if (yPosition > pageHeight - 25) {
+      pdf.addPage();
+      yPosition = 20;
+    }
+
+    const nullPercentage = totalVotes > 0 ? ((nullVotes / totalVotes) * 100).toFixed(1) : 0;
+    pdf.setFontSize(11);
+    pdf.setTextColor(220, 53, 69); // rouge
+  pdf.text('Bulletins Nuls', margin, yPosition);
+
+    yPosition += 7;
+    pdf.setFontSize(10);
+    pdf.setTextColor(220, 53, 69);
+    pdf.text(`Votes: ${nullVotes} (${nullPercentage}%)`, margin + 5, yPosition);
+
+    yPosition += 6;
+    pdf.setDrawColor(200, 200, 200);
+    pdf.rect(margin + 5, yPosition, pageWidth - 2 * margin - 10, 3);
+    
+    pdf.setDrawColor(220, 53, 69);
+    pdf.setFillColor(220, 53, 69);
+    const nullBarWidth = ((pageWidth - 2 * margin - 10) * nullPercentage) / 100;
+    pdf.rect(margin + 5, yPosition, nullBarWidth, 3, 'F');
+
+    // Footer - obtenir le nombre de pages de façon sûre
+    const pageCount = typeof pdf.getNumberOfPages === 'function'
+      ? pdf.getNumberOfPages()
+      : (pdf.internal && pdf.internal.pages ? Object.keys(pdf.internal.pages).length : 1);
+    for (let i = 1; i <= pageCount; i++) {
+      pdf.setPage(i);
+      pdf.setFontSize(9);
+      pdf.setTextColor(180, 180, 180);
+      pdf.text(
+        `Page ${i} sur ${pageCount}`,
+        pageWidth / 2,
+        pageHeight - 10,
+        { align: 'center' }
+      );
+    }
+
+  // Télécharger le PDF
+    const filename = `resultats-votes-${now.getTime()}.pdf`;
+    pdf.save(filename);
+    
+    alert("✅ PDF téléchargé avec succès !");
+
+  } catch (error) {
+    console.error("Erreur lors de l'export PDF:", error);
+    alert("❌ Erreur lors de l'export PDF:\n" + error.message);
+  }
+}
