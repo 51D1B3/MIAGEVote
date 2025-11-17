@@ -8,7 +8,7 @@ function startVoting() {
 
   setTimeout(() => {
     // Redirige vers la page de vote située dans le dossier Pages
-    window.location.href = 'Pages/index.html';
+    window.location.href = 'Pages/page.html';
   }, 300);
 }
 
