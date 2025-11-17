@@ -10,15 +10,21 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="script.js" defer></script>
+  <script src="theme.js"></script>
   <link rel="stylesheet" href="style.css">
   <link rel="icon" type="image/png" href="favicon.png">
 </head>
 <body>
+  <!-- Bouton mode sombre/clair -->
+  <button class="theme-toggle" onclick="toggleTheme()" aria-label="Changer de thème">
+    <span class="sun">☀️</span>
+    <span class="moon">🌙</span>
+  </button>
   <!-- Header avec logo et bouton reset -->
   <header>
     <div class="logo">
-      <img src="./images/LogoProjet-remove.png" alt="Logo">
-      <span>51D1B3</span>
+      <img src="./images/mon_logo.png" alt="Logo">
+      <span>MIAGE</span>
     </div>
     <button class="reset-btn" onclick="resetCandidates()">🔄 Réinitialiser</button>
     <button onclick="showHelp()" class="help-btn">❓Aide</button>
@@ -41,12 +47,12 @@
 
   <div class="candidates" id="candidates"></div>
 
-  <!-- Bouton pour ajouter un nouveau candidat -->
-  <button class="add-btn" onclick="addCandidate()">➕ Ajouter un candidat</button>
-
-  <button class="results-btn" onclick="showResults()">Voir les votes</button>
-
-  <button class="pdf-btn" onclick="exportResultsToPDF()">📥 Exporter en PDF</button>
+  <!-- Boutons d'actions superposés -->
+  <div class="action-stack" aria-label="Actions">
+    <button class="add-btn" onclick="addCandidate()" aria-label="Ajouter un candidat">➕ Nouveau Candidat</button>
+    <button class="results-btn" onclick="showResults()" aria-label="Voir les votes">📊 Résultats</button>
+    <button class="pdf-btn" onclick="exportResultsToPDF()" aria-label="Exporter en PDF">⬇️ Télécharger</button>
+  </div>
 
   <div class="results" id="results"></div>
 </main>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SidiVote - Accueil</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="home.css">
+  <link rel="icon" type="image/png" href="favicon.png">
+</head>
+<body class="home-page">
+  <!-- Bouton mode sombre/clair -->
+  <button class="theme-toggle" onclick="toggleTheme()" aria-label="Changer de thème">
+    <span class="sun">☀️</span>
+    <span class="moon">🌙</span>
+  </button>
+
+  <div class="hero-container">
+    <!-- Section principale -->
+    <div class="hero-content">
+      <div class="logo-section">
+        <img src="./images/mon_logo.png" alt="Logo SidiVote" class="hero-logo">
+        <h1 class="hero-title">SidiVote</h1>
+        <p class="hero-subtitle">Système de vote électronique moderne</p>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">🗳️</div>
+          <h3>Vote Simple</h3>
+          <p>Interface intuitive pour voter facilement</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📊</div>
+          <h3>Résultats Temps Réel</h3>
+          <p>Visualisation instantanée des résultats</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📄</div>
+          <h3>Export PDF</h3>
+          <p>Téléchargement des résultats en PDF</p>
+        </div>
+      </div>
+
+      <!-- bouton déplacé vers la section des conseils/slideshow -->
+    </div>
+
+    <!-- Slideshow images -->
+    <div class="image-slideshow">
+      <div class="slideshow-container">
+        <img src="./images/istockphoto-1498776269-612x612.jpg" alt="Vote" class="slide">
+        <img src="./images/pexels-element5-1550337.jpg" alt="Vote" class="slide">
+        <img src="./images/pexels-edmond-dantes-7103203.jpg" alt="Vote" class="slide">
+      </div>
+      <div class="slideshow-tips">
+        <div class="tip-text">💡 Un système de vote fiable, sécurisé et totalement transparent</div>
+        <div class="tip-text">📊 Accédez à des résultats clairs, instantanés et vérifiés en temps réel.</div>
+        <div class="tip-text">🗣️ Exprimez votre choix : votre voix contribue à une décision éclairée.</div>
+      </div>
+      <div class="slideshow-actions">
+        <button class="start-btn" onclick="startVoting()">
+          <span>Commencer à Voter</span>
+          <div class="btn-arrow">→</div>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer removed as requested -->
+
+  <script src="home.js"></script>
+</body>
+</html>

@@ -150,8 +150,8 @@ function showResults() {
   const nullDiv = document.createElement("div");
   nullDiv.className = "candidate";
   nullDiv.innerHTML = `
-    <div style="width: 100%; height: 220px; background: #f8f9fa; display: flex; align-items: center; justify-content: center; border-radius: 12px; border: 2px solid #dc3545;">
-      <span style="font-size: 80px; color: #dc3545;">❌</span>
+    <div style="width: 100%; height: 160px; background: #f8f9fa; display: flex; align-items: center; justify-content: center; border-radius: 12px; border: 2px solid #dc3545;">
+      <span style="font-size: 48px; color: #dc3545;">❌</span>
     </div>
     <h3>Bulletins Nuls</h3>
     <div class="votes">${nullVotes} votes (${nullPercentage}%)</div>
