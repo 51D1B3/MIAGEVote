@@ -1,7 +1,7 @@
 // --- Liste par défaut ---
 const defaultCandidates = [
-  { id: 1, name: "THOMAS LAMAH", photo: "./images/homme-calme.jpg" },
-  { id: 2, name: "MAHAMADOU SIDIBE", photo: "./images/Mon_image.jpg" },
+  { id: 1, name: "THOMAS LAMAH", photo: "../images/Président.jpg" },
+  { id: 2, name: "MAHAMADOU SIDIBE", photo: "../images/Mon_image.jpg" },
 ];
 
 // --- Charger les candidats depuis localStorage (si modifiés) ---
