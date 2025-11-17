@@ -37,7 +37,7 @@ body {
 
 /* Bouton de changement de thème (visible seulement sur home.html) */
 .theme-toggle {
-  position: fixed;
+  position: absolute;
   top: 20px;
   left: 20px;
   width: 60px;
